@@ -1,5 +1,5 @@
 import sys
-sys.addpath('../')
+sys.path.append('../')
 from linear_regression import *
 
 def example1(partId):
