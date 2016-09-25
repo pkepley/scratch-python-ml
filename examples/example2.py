@@ -1,9 +1,16 @@
-import sys
-sys.path.append('../')
+import os, sys
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+
+# this should be the current directory, where the
+# examples live:
+examples_dir_path = os.path.abspath(os.path.dirname(__file__))
+
+# get logistic regression, should be located in the
+# directory one up on the tree:
+sys.path.append(examples_dir_path + '/../')
 from logistic_regression import logistic_regression
 
 def mapFeature2d(X, degree=6):
@@ -46,6 +53,7 @@ def mapFeature2d(X, degree=6):
 				Xout[:, dim] = X[:,0]**i * X[:,1]**(j-i)
 				dim += 1
 		return Xout
+
 
 def plot_contour(X, y, alpha = 0.0, degree=6, decision_level=0.5, ranges=None):
 	# Train Logistic Regression and Plot contour for 2d data using polynomial features
@@ -106,7 +114,7 @@ if __name__ == '__main__':
 	#################################################
 
 	# read data:
-	df = pd.read_csv('./ex2data1.txt', header=None);
+	df = pd.read_csv(examples_dir_path + '/ex2data1.txt', header=None);
 	df.rename(index=str, 
 			  columns={0 :'Exam 1 Score', 
 					   1 : 'Exam 2 Score', 
@@ -140,7 +148,7 @@ if __name__ == '__main__':
  	################################################
 	# part 2:
 	#################################################
-	df = pd.read_csv('./ex2data2.txt', header=None);
+	df = pd.read_csv(examples_dir_path + '/ex2data2.txt', header=None);
 	X = np.array(df); y = X[:,2]; X = X[:,0:2];
 	
 	# overfit:
