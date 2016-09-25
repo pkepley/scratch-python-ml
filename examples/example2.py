@@ -55,8 +55,9 @@ def mapFeature2d(X, degree=6):
 		return Xout
 
 
-def plot_contour(X, y, alpha = 0.0, degree=6, decision_level=0.5, ranges=None):
-	# Train Logistic Regression and Plot contour for 2d data using polynomial features
+def plot_decision(X, y, alpha = 0.0, degree=6, decision_level=0.5, ranges=None):
+	# Train Logistic Regression and Plot decision boundary for 2d data using 
+	# polynomial features
 	#
 	# input: 
 	# X      - an array with shape (n_observations,2)
@@ -99,7 +100,7 @@ def plot_contour(X, y, alpha = 0.0, degree=6, decision_level=0.5, ranges=None):
 	g.fig.suptitle(r"Data with Decision Boundary ($\alpha$ = %.02f)" % alpha);
 	leg = g.ax.legend(frameon=True)
 	leg.get_frame().set_facecolor('w');
-	leg.get_frame().set_edgecolor('b');
+	leg.get_frame().set_edgecolor('k');
 	leg.get_frame().set_linewidth(1.0);
 
 	# plot contour:
@@ -133,7 +134,7 @@ if __name__ == '__main__':
 	g.fig.suptitle("Data with Decision Boundary");
 	leg = g.ax.legend(frameon=True)
 	leg.get_frame().set_facecolor('w');
-	leg.get_frame().set_edgecolor('b');
+	leg.get_frame().set_edgecolor('k');
 	leg.get_frame().set_linewidth(1.0);
 
 	#sns.lmplot('Exam 1 Score', 'Exam 2 Score', df, hue='y', fit_reg=False);
@@ -152,12 +153,12 @@ if __name__ == '__main__':
 	X = np.array(df); y = X[:,2]; X = X[:,0:2];
 	
 	# overfit:
-	plot_contour(X, y, alpha = 0.0, degree=6, ranges=None);
+	plot_decision(X, y, alpha = 0.0, degree=6, ranges=None);
 
 	# better:
-	plot_contour(X, y, alpha = 1.0, degree=6, ranges=None);
+	plot_decision(X, y, alpha = 1.0, degree=6, ranges=None);
 
 	# underfit:
-	plot_contour(X, y, alpha = 100.0, degree=6, ranges=None);
+	plot_decision(X, y, alpha = 100.0, degree=6, ranges=None);
 
 	plt.show();
