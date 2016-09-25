@@ -50,11 +50,11 @@ class logistic_regression:
 		w = np.zeros((1, self.n_features+1))
 
 		if self.max_iterations:
-			w = minimize(self.J, w, jac = self.grad_J, options={'maxiter': self.max_iterations}).x
+			self.optimize_result = minimize(self.J, w, jac = self.grad_J, options={'maxiter': self.max_iterations})
 		else:
-			w = minimize(self.J, w, jac = self.grad_J).x
+			self.optimize_result = minimize(self.J, w, jac = self.grad_J)
 
-		self.w = w
+		self.w = self.optimize_result.x
 		
 	def pad(self, Xs):
 		nxs = Xs.shape[0]
