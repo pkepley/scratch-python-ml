@@ -3,7 +3,7 @@ from scipy.linalg import solve
 from scipy.optimize import minimize
 
 class logistic_regression:
-	def __init__(self, X, y, alpha = 0, tol = 10**-5, eta=10**-6, max_iterations=np.inf):
+	def __init__(self, X, y, alpha = 0, max_iterations = None):
 		self.n_observations = X.shape[0]
 		self.n_features = X.shape[1]
 
@@ -11,10 +11,14 @@ class logistic_regression:
 		self.X = np.insert(X, 0, np.ones(self.n_observations), axis=1)
 		self.y = y
 
+		# regularization parameter
 		self.alpha = alpha
+		
+		# weight vector. initially set as 0
 		self.w = np.zeros(self.n_features + 1)
-		self.tol = tol
-		self.eta = eta
+
+		# maximum number of iterations, used for causing
+		# minimize to terminate early
 		self.max_iterations = max_iterations
 
 	def g(self, z):
@@ -42,13 +46,14 @@ class logistic_regression:
 		grad_J_alpha[1:] = grad_J_alpha[1:] + (self.alpha / self.n_observations) * w[1:]
 		return grad_J_alpha
 
-	def fit(self, maxiter=None):
+	def fit(self):
 		w = np.zeros((1, self.n_features+1))
 
-		if maxiter:
-			w = minimize(self.J, w, jac = self.grad_J, options={'maxiter': maxiter}).x
+		if self.max_iterations:
+			w = minimize(self.J, w, jac = self.grad_J, options={'maxiter': self.max_iterations}).x
 		else:
 			w = minimize(self.J, w, jac = self.grad_J).x
+
 		self.w = w
 		
 	def pad(self, Xs):
