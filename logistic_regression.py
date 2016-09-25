@@ -27,9 +27,8 @@ class logistic_regression:
 	def J(self, w):
 		J_alpha =  -np.dot(self.y.flatten(), np.log(self.h(w, self.X)))
 
-		# add a very small value to avoid numerical zero
-		J_alpha -=  np.dot(1.0 - self.y,
-						   np.log(1.0 - self.h(w, self.X) + 10**-30)) 
+		# add a very small value inside of the logarithm to avoid numerical zero
+		J_alpha -=  np.dot(1.0 - self.y,  np.log(1.0 - self.h(w, self.X) + 10**-30)) 
 		J_alpha = J_alpha / self.n_observations
 
 		# add in regularization
