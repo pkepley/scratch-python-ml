@@ -7,6 +7,7 @@ or specially optimized here, and (like several other people out there)
 I am mainly going to focus on implementing the algorithms from Andrew
 Ng's Coursera course in Python.
 
-The syntax for the algorithms implemented here should resemble the
-sklearn syntax.
+The syntax for the algorithms implemented here should *almost*
+resemble the sklearn syntax, however I pass data to the algorithms at
+initialization as opposed to through the fit function.
 
