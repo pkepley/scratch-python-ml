@@ -9,7 +9,7 @@ class pca:
         self.n_eigs = n_eigs
         self.tol = tol        
     
-    def fit(self, n_outer = 1):
+    def fit(self):
         self.mean = np.mean(self.X, axis=0);
         self.cov = np.dot((self.X - self.mean).T, (self.X - self.mean));
         # U has singular vectors as columns
