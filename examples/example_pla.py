@@ -59,14 +59,15 @@ if __name__ == '__main__':
     n_runs = 1000
     n_observations = 100
 
-    print 'Running Problem 1.4 from Learning from Data'
-    print 'Using n_runs = {0}, n_observations = {1}'.format(n_runs, n_observations)
-
     n_demonstration_fits = 3
     print 'Demonstrating fit for %d example data sets' % n_demonstration_fits
     for i in range(n_demonstration_fits):
         demonstrate_fit(n_observations)
     plt.show()
+
+    print '-------------------------------------------'
+    print 'Running Problem 1.4 from \"Learning from Data.\" This may take some time.'
+    print 'Using n_runs = {0}, n_observations = {1}'.format(n_runs, n_observations)
 
     # Estimate the number of iterations:
     n_train_its = np.zeros(n_runs)
